@@ -20,7 +20,11 @@
 
     <?php
     $backdrop = new backdrop();
-    echo $backdrop->makeBackdrop();
+
+    echo $backdrop->makeBackdrop(
+        $backdrop->window()
+    );
+
     ?>
 </body>
 
