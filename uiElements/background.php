@@ -14,6 +14,14 @@ class backdrop
     public function makeBackdrop($insert = "")
     {
         $background = <<<EOD
+        <style>
+            .backdrop{
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+            }
+        </style>
         <div class="backdrop">
         {$insert}
         </div>
@@ -27,9 +35,9 @@ class backdrop
         $window = <<<EOD
         <style>
             .windowFrame{
-                background:gray;
-                width:100px;
-                height:100px;
+                background:#ededed;
+                width:fit-content;
+                height:fit-content;
                 box-shadow: 6px 18px 25px 0px rgba(0,0,0,0.24);
                 border-radius:10px;
                 overflow:hidden;
@@ -39,9 +47,20 @@ class backdrop
                 width:100%;
                 height:20px;
             }
+            .innerWindow{
+                background:#f2f2f2;
+                width:100px;
+                height:100px;
+                margin:5px;
+                border-radius:10px;
+                box-shadow: inset 0px 0px 19px -11px rgba(0,0,0,0.71);
+                
+            }
         </style>
         <div class="windowFrame">
             <div class="topPart">
+            </div>
+            <div class="innerWindow">
             </div>
         </div>
         EOD;
