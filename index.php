@@ -22,7 +22,7 @@
     $backdrop = new backdrop();
 
     echo $backdrop->makeBackdrop(
-        $backdrop->window()
+        $backdrop->windowGen()
     );
 
     ?>
