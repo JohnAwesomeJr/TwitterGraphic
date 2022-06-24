@@ -1,18 +1,18 @@
 <style>
-.backdrop {
-    height: 100vh;
-    background: rgb(9, 9, 121);
-    background: linear-gradient(180deg, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
-}
+    .backdrop {
+        height: 100vh;
+        background: rgb(9, 9, 121);
+        background: linear-gradient(180deg, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    }
 </style>
-
-
 
 <?php
 class backdrop
 {
+    //  {#98a,19}
     public function makeBackdrop($insert = "")
     {
+
         $background = <<<EOD
         <style>
             .backdrop{
@@ -30,8 +30,10 @@ class backdrop
         return $output;
     }
 
-    public function button(){
-            $button = <<<EOD
+    //  {#121,30}
+    public function button()
+    {
+        $button = <<<EOD
             <style>
             .windowButton{
                 width:20px;
@@ -57,11 +59,13 @@ class backdrop
                 <div class="highlight"></div>
             </div>
             EOD;
-            return $button;
-        }
+        return $button;
+    }
 
-        public function topBar(){
-            $topBar = <<<EOD
+    //  {#f99,27}
+    public function topBar()
+    {
+        $topBar = <<<EOD
             <style>
             .topPart{
                 display:flex;
@@ -84,12 +88,14 @@ class backdrop
                 {$this->button()}
             </div>
             EOD;
-            return $topBar;
-        }
+        return $topBar;
+    }
 
 
-        public function windowGen(){
-            $window = <<<EOD
+    //  {#bf6,33}
+    public function windowGen($innerWindow = "")
+    {
+        $window = <<<EOD
             <style>
                 .windowFrame{
                     background:#ededed;
@@ -101,8 +107,9 @@ class backdrop
                 }
                 .innerWindow{
                     background:#f2f2f2;
-                    width:100px;
-                    height:100px;
+                    padding:40px;
+                    min-width:100px;
+                    min-height:100px;
                     margin:5px;
                     border-radius:10px;
                     box-shadow: inset 0px 0px 19px -11px rgba(0,0,0,0.71);
@@ -113,10 +120,11 @@ class backdrop
             <div class="windowFrame">
                 {$this->topBar()}
                 <div class="innerWindow">
+                {$innerWindow}
                 </div>
             </div>
             EOD;
-            return $window;
-        }
+        return $window;
+    }
 }
 ?>
