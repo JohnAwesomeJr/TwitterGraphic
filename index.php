@@ -8,11 +8,11 @@
     <title>Document</title>
 </head>
 <style>
-    * {
-        box-sizing: border-box;
-        padding: 0px;
-        margin: 0px;
-    }
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
 </style>
 
 <body>
@@ -58,6 +58,7 @@
     );
 
     ?>
+
 </body>
 
 </html>
