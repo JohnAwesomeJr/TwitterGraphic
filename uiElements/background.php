@@ -1,6 +1,6 @@
 <style>
 .backdrop {
-    height: 100vh;
+    min-height: 100vh;
     background: rgb(9, 9, 121);
     background: linear-gradient(180deg, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
 }
@@ -9,7 +9,7 @@
 <?php
 class backdrop
 {
-    //  {#98a,19}
+    //  {#98a,20}
     public function makeBackdrop($insert = "")
     {
 
@@ -92,14 +92,16 @@ class backdrop
     }
 
 
-    //  {#dc2,33}
+    //  {#dc2,35}
     public function windowGen($innerWindow = "")
     {
         $window = <<<EOD
             <style>
                 .windowFrame{
+                    margin:20px;
                     background:#ededed;
                     width:fit-content;
+                    max-width:1000px;
                     height:fit-content;
                     box-shadow: 6px 18px 25px 0px rgba(0,0,0,0.24);
                     border-radius:10px;

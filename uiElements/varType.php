@@ -31,7 +31,6 @@ class varType
     {
         return $this->varType('#ffa3a3', $varName, $size);
     }
-
     public function typeInteger($varName, $size)
     {
         return $this->varType('#ffd666', $varName, $size);

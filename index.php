@@ -16,12 +16,20 @@
     padding: 0px;
     margin: 0px;
 }
+
+.hljs {
+    border-radius: 10px;
+    font-size: 20px;
+}
+</style>
 </style>
 
 <body>
     <?php include_once('uiElements/background.php'); ?>
     <?php include_once('uiElements/varType.php'); ?>
     <?php include_once('uiElements/functionMaker.php'); ?>
+    <?php include_once('uiElements/listOfDatatypes.php'); ?>
+
 
 
 
@@ -29,83 +37,54 @@
     $function = new functionMaker();
     $varType = new varType();
     $backdrop = new backdrop();
+    $dataTypesBox = new listOfDatatypes();
 
 
-
-    $typeString = $varType->typeString('String', 0);
-    $typeInteger = $varType->typeInteger('Integer', 0);
-    $typeFloat = $varType->typeFloat('Float', 0);
-    $typeBoolean = $varType->typeBoolean('Boolean', 0);
-    $typeArray = $varType->typeArray('Array', 0);
-    $typeObject = $varType->typeObject('Object', 0);
-    $typeNULL = $varType->typeNULL('NULL', 0);
-    $typeResource = $varType->typeResource('Resource', 0);
+    $typeString1 = $varType->typeString('$String', 1);
+    $typeInteger1 = $varType->typeInteger('$FirstInteger', 1);
+    $typeInteger2 = $varType->typeInteger('$SecondInteger', 1);
 
 
 
 
 
-    $arrayInLine = $varType->typeArray('Array', 1);
-    $functionName = "var_dump";
-    $variableArray = [$arrayInLine];
-    $explanation = "<h1>{$functionName}</h1><br><br>var_dump — Dumps information about a variable.<br><br>";
+
+
+    $functionName = "substr";
+    $variableArray = [$typeString1, $typeInteger1, $typeInteger2];
+    $completeFunction = $function->makeFunction($functionName, $variableArray);
+
+    $explanation = "<h1>{$functionName}</h1><br><br>substr — Return part of a string.<br><br>";
     $useCase = <<<EOD
     <br>
-    <style>
-    .hljs{
-        border-radius:10px;
-    }
-    </style>
-    This will output the array so you can see what it is.<br>
+    {$varType->typeInteger('$FirstInteger', 0)} Is the starting position of the selection. {$varType->typeInteger('$SecondInteger', 0)} is the number of characters that you want to select. if {$varType->typeInteger('$SecondInteger', 0)} is not given it will select everything after {$varType->typeInteger('$FirstInteger', 0)}
+    
+    
+    <br>
+    If {$varType->typeInteger('$FirstInteger', 0)} is a negative number than the selection will be reversed. It will start at the end of the string.
     eg:<br><br>
     <pre><code class="language-php">
-    \$a = array(1, 2, array("a", "b", "c"));<br>
-    var_dump(\$a);<br><br>
+    \$rest = substr("abcdef", -1);    // returns "f"
+    \$rest = substr("abcdef", -2);    // returns "ef"
+    \$rest = substr("abcdef", -3, 1); // returns "d"
 
-    <pre>array(3) {
-        [0]=&gt;
-        int(1)
-        [1]=&gt;
-        int(2)
-        [2]=&gt;
-        array(3) {
-          [0]=&gt;
-          string(1) &quot;a&quot;
-          [1]=&gt;
-          string(1) &quot;b&quot;
-          [2]=&gt;
-          string(1) &quot;c&quot;
-        }
-      }</pre>
-      </code></pre>
+    \$rest = substr("abcdef", 0, -1);  // returns "abcde"
+    \$rest = substr("abcdef", 2, -1);  // returns "cde"
+    \$rest = substr("abcdef", 4, -4);  // returns "";
+    \$rest = substr("abcdef", -3, -1); // returns "de"
+    </code></pre>
     <br><br>
     EOD;
 
-
-
-
-
-
-
-    $completeFunction = $function->makeFunction($functionName, $variableArray);
     $fullFunction = $backdrop->indentWindow($completeFunction);
+    $datatypesBoxShow = $dataTypesBox->dataTypeList() . "<br><br>";
 
-    $dataTypes = <<<EOD
-    <h3>Data Types</h3>
-    {$typeString}
-    {$typeInteger}
-    {$typeFloat}
-    {$typeBoolean}
-    {$typeArray}
-    {$typeObject}
-    {$typeNULL}
-    {$typeResource}
-    EOD;
+    $combine = $explanation . $datatypesBoxShow . $fullFunction . $useCase;
+    $window1 = $backdrop->windowGen($combine);
 
-    $dataTypesInBox = $backdrop->indentWindow($dataTypes);
-    $combine = $explanation . $fullFunction . $useCase  . $dataTypesInBox;
+    $windows = $window1;
     echo $backdrop->makeBackdrop(
-        $backdrop->windowGen($combine)
+        $windows
     );
 
     ?>
