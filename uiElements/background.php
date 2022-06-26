@@ -1,9 +1,9 @@
 <style>
-    .backdrop {
-        height: 100vh;
-        background: rgb(9, 9, 121);
-        background: linear-gradient(180deg, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
-    }
+.backdrop {
+    height: 100vh;
+    background: rgb(9, 9, 121);
+    background: linear-gradient(180deg, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
+}
 </style>
 
 <?php
@@ -92,7 +92,7 @@ class backdrop
     }
 
 
-    //  {#bf6,33}
+    //  {#dc2,33}
     public function windowGen($innerWindow = "")
     {
         $window = <<<EOD
@@ -125,6 +125,24 @@ class backdrop
             </div>
             EOD;
         return $window;
+    }
+
+    //  {#496,16}
+    public function indentWindow($content)
+    {
+        $indent = <<<EOD
+        <style>
+            .indentWindow{
+                padding:20px;
+                box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.34);
+                border-radius: 10px;
+            }
+        </style>
+        <div class="indentWindow">
+        {$content}
+        </div>
+        EOD;
+        return $indent;
     }
 }
 ?>
