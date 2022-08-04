@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  twitterGraphic:
+    container_name: twitterGraphic
+    image: mylamp:latest
+    volumes:
+      - "./html:/var/www/html/"
+      - "./php:/usr/local/etc/php/"
+    ports:
+      - 80:80
+      - 433:433
